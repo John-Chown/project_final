@@ -1,0 +1,24 @@
+{
+  "name": "project_final",
+  "version": "1.0.0",
+  "description": "project final",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/John-Chown/project_final.git"
+  },
+  "author": "John Chown",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/John-Chown/project_final/issues"
+  },
+  "homepage": "https://github.com/John-Chown/project_final#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
+  }
+}

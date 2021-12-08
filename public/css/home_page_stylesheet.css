@@ -1,0 +1,127 @@
+@font-face {
+    font-family: Futura;
+    src: url(/fonts/Futura\ Heavy\ font.ttf);
+}
+
+
+body{
+    background-image: url(/images/web_background.png);
+    margin-left: 100px;
+    margin-right: 100px;
+    max-width: initial;
+    overflow-x: hidden;
+}
+
+img{
+    box-shadow: 10px 10px 10px;
+}
+
+header{
+    position: relative;
+    text-align: center;
+    
+}
+
+nav{
+    background-color: white;
+    font-family: futura;
+    font-size: 200%;
+    box-shadow: 10px 10px 10px;
+    padding: 10px;
+}
+
+a{
+    color:black;
+    text-decoration: none;
+    padding-top: 10px;
+    
+    
+}
+.htp{
+    float:left;
+    width: 65%;
+}
+
+.qqa{
+    float: right;
+    width: 30%;
+}
+
+h2.head_htp{
+    background-color: black;
+    color: white;
+    text-align: center;
+    
+    font-family: futura;
+    font-size: 300%;
+    box-shadow: black 10px 10px 10px;
+    padding: 10px;
+    
+}
+
+p.desc{
+    background-color: white;
+    font-family: futura;
+    text-align: center;
+    
+    position: relative;
+    font-size: 200%;
+    box-shadow: 10px 10px 10px;
+
+    padding: 10px;
+    height:423px;
+    
+}
+
+
+h2.head_qqa{
+    background-color: black;
+    color: white;
+    font-family: futura;
+    font-size: 300%;
+    text-align: center;
+    padding: 10px;
+    box-shadow: black 10px 10px 10px;
+    
+}
+
+
+.quiz_links{
+ 
+ background-color: white;
+ text-align: center;
+ font-family: futura;
+ font-size: 150%;
+ box-shadow: 10px 10px 10px;
+ padding-top: 20px;
+ height: 423px;
+
+}
+
+
+
+
+footer{
+    clear:both;
+    position:relative;
+    
+    box-shadow: 10px 10px 10px;
+    padding-top: 50px;
+}
+
+.foot_p{
+    background-color: white;
+    font-family: futura;
+    text-align: center;
+    
+}
+
+
+a:hover{
+  background-color: black;
+    color: white;
+}
+
+.img_link:hover{
+    color: black;
+  }

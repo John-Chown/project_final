@@ -1,0 +1,90 @@
+@font-face {
+    font-family: Futura;
+    src: url(/fonts/Futura\ Heavy\ font.ttf);
+}
+
+
+
+body{
+
+    margin-left: 100px;
+    margin-right: 100px;
+    max-width: initial;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-image: repeating-radial-gradient(rgb(174, 174, 255), rgb(0, 0, 41));
+    
+}
+
+img{
+    box-shadow: 10px 10px 10px;
+}
+
+header{
+    position: relative;
+    text-align: center;
+    
+}
+
+nav{
+    background-color: white;
+    font-family: futura;
+    font-size: 200%;
+    box-shadow: 10px 10px 10px;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+.q1, .q2, .q3, .q4, .q5, .q6, .q7, .q8, .q9, .q10{
+    background-color: white;
+    text-align: center;
+    font-family: futura;
+    padding-bottom: 10px;
+    box-shadow: 10px 10px 10px;
+    margin-left: 400px;
+    margin-right: 400px;
+
+}
+
+h1{
+    font-size: 350%;
+}
+
+ h2{
+     font-size: 350%;
+     
+ }
+
+
+a{
+    color:black;
+    text-decoration: none;
+    padding-top: 10px;
+    font-family: futura;
+    
+    
+}
+
+a:hover{
+    background-color: black;
+      color: white;
+  }
+
+  footer{
+    
+    
+    box-shadow: 10px 10px 10px;
+    padding-top: 50px;
+}
+
+.foot_p{
+    background-color: white;
+    font-family: futura;
+    text-align: center;
+    
+}
+
+.img_link:hover{
+    color: black;
+  }
+
