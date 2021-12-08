@@ -1,10 +1,10 @@
 @font-face {
     font-family: Futura;
-    src: url(/fonts/Futura\ Heavy\ font.ttf);
+    src: url(/public/fonts/Futura\ Heavy\ font.ttf);
 }
 
 body{
-    background-image: url(/images/web_background.png);
+    background-image: url(/public/images/web_background.png);
     margin-left: 100px;
     margin-right: 100px;
     max-width: initial;
