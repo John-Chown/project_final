@@ -88,3 +88,12 @@ a:hover{
     color: black;
   }
 
+.subBtn{
+    margin-left: 43%;
+    margin-right: 43%;
+    width: 15%;
+    font-family: futura;
+    font-size: 125%;
+    box-shadow: 10px 10px 10px;
+    margin-top: 5%;
+}
