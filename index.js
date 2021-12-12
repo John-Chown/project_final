@@ -1,22 +1,47 @@
 const express = require("express");
 const ejs = require("ejs");
+const Stopwatch = require("statman-stopwatch");
+const mysql = require('mysql');
+const { setDefaultResultOrder } = require("dns");
+const { type } = require("express/lib/response");
 
+
+const q1sw = new Stopwatch();
+const q2sw = new Stopwatch();
+const q3sw = new Stopwatch();
+const q4sw = new Stopwatch();
+
+
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    database: "moga_trivia",
+});
 
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
+
+db.connect((err) => {
+    if (err) {
+        throw err;
+    } else {
+        console.log(`Successfull connection to the DB`);
+    }
+});
+
+
+
+
 app.set("view engine", "ejs");
 app.use("/public", express.static(__dirname + "/public"));
+
 
 app.get("/", (req, res) => {
     res.render("index");
 });
 
-app.get("/quizInfo", (req, res) => {
-    res.render("../views/html/quizzes_page");
-});
 
 app.get("/login", (req, res) => {
     res.render("../views/html/login_page");
@@ -28,22 +53,28 @@ app.get("/signup", (req, res) => {
 
 app.get("/quiz1", (req, res) => {
     res.render("../views/html/quiz1");
+    q1sw.start();
 });
 
 app.get("/quiz2", (req, res) => {
     res.render("../views/html/quiz2");
+    q2sw.start();
 });
 
 app.get("/quiz3", (req, res) => {
     res.render("../views/html/quiz3");
+    q3sw.start();
 });
 
 app.get("/quiz4", (req, res) => {
     res.render("../views/html/quiz4");
+    q4sw.start();
 });
 
 app.post("/", (req, res) => {
     var score = 0;
+
+    
 
     if (req.body.q1Answer1 == "c"){
         score++;
@@ -54,7 +85,7 @@ app.post("/", (req, res) => {
     }
 
     if (req.body.q1Answer3 == "a"){
-        score++;
+       score++;
     }
 
     if (req.body.q1Answer4 == "c"){
@@ -85,8 +116,26 @@ app.post("/", (req, res) => {
         score++;
     }
 
+    q1sw.stop();
+
+    const alpha = q1sw.read();
+    const q1Round = (alpha / 1000);
+
+    console.log(score);
+    let qf1 = q1Round.toFixed(2) + " seconds";
+
+    //req.session.score;
     console.log(score);
 
+    let data = {score: score, time: qf1}
+    let sql = `INSERT INTO scoreStats SET ?`;
+    let query = db.query(sql, data, (err, result) => {
+        if (err){
+            throw err;
+        }
+        console.log(`stats were added to db`);
+        console.log(result);
+    });
 
     var score2 = 0;
 
@@ -99,7 +148,7 @@ app.post("/", (req, res) => {
     }
 
     if (req.body.q2Answer3 == "a"){
-        score2++;
+       score2++;
     }
 
     if (req.body.q2Answer4 == "d"){
@@ -123,14 +172,19 @@ app.post("/", (req, res) => {
     }
 
     if (req.body.q2Answer9 == "d"){
-        score2++;
+       score2++;
     }
 
     if (req.body.q2Answer10 == "a"){
         score2++;
     }
 
+    const beta = q2sw.read();
+    const q2Round = (beta / 1000);
+
+    q2sw.stop();
     console.log(score2);
+    console.log(q2Round.toFixed(2) + " seconds");
 
 
 
@@ -216,7 +270,12 @@ app.post("/", (req, res) => {
         score3++;
     }
 
+    q3sw.stop();
+    const charlie = q3sw.read();
+    const q3Round = (charlie / 1000)
+    
     console.log(score3);
+    console.log(q3Round.toFixed(2) + " seconds");
 
     var score4 = 0;
 
@@ -300,9 +359,36 @@ app.post("/", (req, res) => {
         score4++;
     }
 
+    q4sw.stop();
+    const delta = q4sw.read();
+    const q4Round = (delta / 1000);
+    
     console.log(score4);
+    console.log(q4Round.toFixed(2) + " seconds");
     
 })
+
+
+app.get("/quizInfo", (req, res) => {
+    
+
+    let sql = 'SELECT * FROM scoreStats';
+    db.query(sql, (err, result) => {
+        if (err) {
+            throw err;
+        } 
+
+        function replacer(key, value) {
+            if (typeof value == "") return undefined;
+        }
+      
+
+        res.render("../views/html/quizzes_page", {data: JSON.stringify(result)})
+
+    });
+
+   
+});
 
 
 const PORT = process.env.PORT || 3000;

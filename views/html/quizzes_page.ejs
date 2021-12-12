@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoGa Trivia - Quiz Info</title>
     <link rel="stylesheet" href="/public/css/quizzes_page_stylesheet.css">
+    <script src="/index.js"></script>
 </head>
 <body>
     <header>
@@ -47,7 +48,39 @@
                 You will have to pick one out of four video game titles in a multiple choice fashion.
                 This quiz has 10 questions.
             </p>
-            <p class="aver">Average Time: N/A <br>Average Accuracy: N/A</p>
+            <div id="q1Container">
+                <p class="aver"><%= data %></p>
+                <br>
+                <p class="aver"></p>
+            </div>
+            
+            <br>
+
+           
+            
+            
+            <script src="/index.js">
+               let q1DisTime = document.getElementById('q1Container')
+               q1DisTime.innerHTML += `Average Time: 32.20 Seconds <br>`;
+                q1DisTime.style.color = "white";
+                q1DisTime.style.backgroundColor = "black";
+                q1DisTime.style.fontFamily = "futura";
+                q1DisTime.style.fontSize = "150%";
+                q1DisTime.style.textAlign = "center";
+                q1DisTime.style.padding = "10px";
+               
+                q1DisTime.style.marginTop = "-110px";
+
+                let q1DisScore = document.getElementById('q1Container');
+                q1DisScore.innerHTML += `Average Score: ${score2} / 10`;
+                q1DisScore.style.color = "white";
+                q1DisScore.style.backgroundColor = "black";
+                q1DisScore.style.fontFamily = "futura";
+                q1DisScore.style.fontSize = "150%";
+                q1DisScore.style.textAlign = "center";
+                q1DisScore.style.padding = "10px";
+
+            </script>
             <a class="qa" href="/quiz2">Click Here To Play</a>
         </section>
 
