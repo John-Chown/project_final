@@ -162,3 +162,10 @@ a:hover{
       text-align: center;
       padding: 50px;
   }
+  .note{
+      color: white;
+      background-color: black;
+      font-family: futura;
+      text-align: center;
+      font-size: 80%;
+  }

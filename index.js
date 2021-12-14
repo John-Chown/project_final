@@ -56,14 +56,6 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/login", (req, res) => {
-    res.send('<a href="/auth/google">Login with Google </a>');
-});
-
-app.get("/signup", (req, res) => {
-    res.render("../views/html/signup_page");
-});
-
 app.get("/quiz1", (req, res) => {
     res.render("../views/html/quiz1");
     q1sw.start();
