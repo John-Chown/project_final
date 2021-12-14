@@ -134,6 +134,17 @@ app.post("/", (req, res) => {
         console.log(result);
     });
 
+    
+});
+
+
+app.get("/quizInfo", (req, res) => {
+   
+        res.render("../views/html/quizzes_page");
+   
+});
+
+app.post("/q2", (req, res) => {
     var score2 = 0;
 
     if (req.body.q2Answer1 == "b"){
@@ -194,7 +205,10 @@ app.post("/", (req, res) => {
         console.log(result);
     });
 
+    
+});
 
+app.post("/q3", (req, res) => {
     var score3 = 0;
 
     if (req.body.q3Answer1 == "a"){
@@ -296,6 +310,10 @@ app.post("/", (req, res) => {
     console.log(score3);
     console.log(q3Round.toFixed(2) + " seconds");
 
+   
+});
+
+app.post("/q4", (req, res) => {
     var score4 = 0;
 
     if (req.body.q4Answer1 == "a"){
@@ -392,19 +410,14 @@ app.post("/", (req, res) => {
         }
         console.log(`stats were added to db`);
         console.log(result);
+        
     });
+
     
     
     console.log(score4);
     console.log(q4Round.toFixed(2) + " seconds");
     
-})
-
-
-app.get("/quizInfo", (req, res) => {
-   
-        res.render("../views/html/quizzes_page");
-   
 });
 
 app.get("/quizOneStats", (req, res) => {

@@ -151,13 +151,13 @@ a:hover{
       font-family: futura;
       text-align: center;
       box-shadow: black 10px 10px 10px;
-      margin-bottom: -4%;
+      margin-bottom: -2%;
   }
 
   .table{
       background-color: white;
       font-family: futura;
-      font-size: 500%;
+      font-size: 250%;
       box-shadow: 10px 10px 10px;
       text-align: center;
       padding: 50px;
