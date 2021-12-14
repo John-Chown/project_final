@@ -6,7 +6,7 @@ const { setDefaultResultOrder } = require("dns");
 const { type } = require("express/lib/response");
 const session = require('express-session');
 const passport = require("passport");
-const dbConfig = require("/db.config.js");
+//const dbConfig = require("/db.config.js");
 require("./auth");
 
 
@@ -17,9 +17,10 @@ const q4sw = new Stopwatch();
 
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    database: "moga_trivia",
+    host: "us-cdbr-east-05.cleardb.net",
+    user: "b06fb0276dd7b3",
+    password: "753b2450",
+    database: "heroku_c5dce109e5b80b2"
 });
 
 const app = express();
