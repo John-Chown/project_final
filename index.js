@@ -122,13 +122,10 @@ app.post("/", (req, res) => {
     const q1Round = (alpha / 1000);
 
     console.log(score);
-    let qf1 = q1Round.toFixed(2) + " seconds";
-
-    //req.session.score;
-    console.log(score);
+    let qf1 = q1Round.toFixed(2) + " seconds"; 
 
     let data = {score: score, time: qf1}
-    let sql = `INSERT INTO scoreStats SET ?`;
+    let sql = `INSERT INTO q1Stats SET ?`;
     let query = db.query(sql, data, (err, result) => {
         if (err){
             throw err;
@@ -184,8 +181,18 @@ app.post("/", (req, res) => {
 
     q2sw.stop();
     console.log(score2);
-    console.log(q2Round.toFixed(2) + " seconds");
+    
+    let qf2 = q2Round.toFixed(2) + " seconds";
 
+    let q2data = {score: score2, time: qf2}
+    let q2sql = `INSERT INTO q2Stats SET ?`;
+    let q2query = db.query(q2sql, q2data, (err, result) => {
+        if (err){
+            throw err;
+        }
+        console.log(`stats were added to db`);
+        console.log(result);
+    });
 
 
     var score3 = 0;
@@ -272,7 +279,19 @@ app.post("/", (req, res) => {
 
     q3sw.stop();
     const charlie = q3sw.read();
-    const q3Round = (charlie / 1000)
+    const q3Round = (charlie / 1000);
+
+    let qf3 = q3Round.toFixed(2) + " seconds"; 
+
+    let q3data = {score: score3, time: qf3}
+    let q3sql = `INSERT INTO q3Stats SET ?`;
+    let q3query = db.query(q3sql, q3data, (err, result) => {
+        if (err){
+            throw err;
+        }
+        console.log(`stats were added to db`);
+        console.log(result);
+    });
     
     console.log(score3);
     console.log(q3Round.toFixed(2) + " seconds");
@@ -362,6 +381,19 @@ app.post("/", (req, res) => {
     q4sw.stop();
     const delta = q4sw.read();
     const q4Round = (delta / 1000);
+
+    let qf4 = q4Round.toFixed(2) + " seconds";
+
+    let q4data = {score: score4, time: qf4}
+    let q4sql = `INSERT INTO q4Stats SET ?`;
+    let q4query = db.query(q4sql, q4data, (err, result) => {
+        if (err){
+            throw err;
+        }
+        console.log(`stats were added to db`);
+        console.log(result);
+    });
+    
     
     console.log(score4);
     console.log(q4Round.toFixed(2) + " seconds");
@@ -370,24 +402,49 @@ app.post("/", (req, res) => {
 
 
 app.get("/quizInfo", (req, res) => {
-    
+   
+        res.render("../views/html/quizzes_page");
+   
+});
 
-    let sql = 'SELECT * FROM scoreStats';
+app.get("/quizOneStats", (req, res) => {
+    let sql = 'SELECT * FROM q1Stats';
     db.query(sql, (err, result) => {
         if (err) {
             throw err;
         } 
+        res.render("../views/html/quiz1_stats", {data: JSON.stringify(result)});
+    }); 
+});
 
-        function replacer(key, value) {
-            if (typeof value == "") return undefined;
-        }
-      
+app.get("/quizTwoStats", (req, res) => {
+    let sql = 'SELECT * FROM q2Stats';
+    db.query(sql, (err, result) => {
+        if (err) {
+            throw err;
+        } 
+        res.render("../views/html/quiz2_stats", {data: JSON.stringify(result)});
+    }); 
+});
 
-        res.render("../views/html/quizzes_page", {data: JSON.stringify(result)})
+app.get("/quizThreeStats", (req, res) => {
+    let sql = 'SELECT * FROM q3Stats';
+    db.query(sql, (err, result) => {
+        if (err) {
+            throw err;
+        } 
+        res.render("../views/html/quiz3_stats", {data: JSON.stringify(result)});
+    }); 
+});
 
-    });
-
-   
+app.get("/quizFourStats", (req, res) => {
+    let sql = 'SELECT * FROM q4Stats';
+    db.query(sql, (err, result) => {
+        if (err) {
+            throw err;
+        } 
+        res.render("../views/html/quiz4_stats", {data: JSON.stringify(result)});
+    }); 
 });
 
 

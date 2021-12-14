@@ -123,8 +123,42 @@ a:hover{
       padding: 10px;
       align-items: center;
       margin-left: 90px;
+      margin-bottom: -120px;
+      margin-top: -250%;
   }
 
   .img_link:hover{
     color: black;
+  }
+
+  .qs{
+    background-color: black;
+    color: white;
+    font-family: futura;
+    font-size: 150%;
+    margin:60px;
+    text-align: center;
+    padding: 10px;
+  }
+
+
+  main{
+      background-color: black;
+  }
+  .quiz{
+      color: white;
+      background-color: black;
+      font-family: futura;
+      text-align: center;
+      box-shadow: black 10px 10px 10px;
+      margin-bottom: -4%;
+  }
+
+  .table{
+      background-color: white;
+      font-family: futura;
+      font-size: 500%;
+      box-shadow: 10px 10px 10px;
+      text-align: center;
+      padding: 50px;
   }
