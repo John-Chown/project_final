@@ -4,6 +4,9 @@ const Stopwatch = require("statman-stopwatch");
 const mysql = require('mysql');
 const { setDefaultResultOrder } = require("dns");
 const { type } = require("express/lib/response");
+const session = require('express-session');
+const passport = require("passport");
+require("./auth");
 
 
 const q1sw = new Stopwatch();
@@ -36,6 +39,18 @@ db.connect((err) => {
 
 app.set("view engine", "ejs");
 app.use("/public", express.static(__dirname + "/public"));
+app.use(
+    session({
+        secret: "2p7Pr%#Sfn?wDbRc",
+        resave: false,
+        saveUninitialized: true,
+        cookie: {maxAge: 60 * 60 * 1000},
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 app.get("/", (req, res) => {
@@ -44,7 +59,7 @@ app.get("/", (req, res) => {
 
 
 app.get("/login", (req, res) => {
-    res.render("../views/html/login_page");
+    res.send('<a href="/auth/google">Login with Google </a>');
 });
 
 app.get("/signup", (req, res) => {
@@ -70,6 +85,40 @@ app.get("/quiz4", (req, res) => {
     res.render("../views/html/quiz4");
     q4sw.start();
 });
+
+app.get(
+    "/auth/google",
+    passport.authenticate("google", { scope: ["email", "profile"] })
+  );
+
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google", {
+      successRedirect: "/protected", // what to do when successful login
+      failureRedirect: "auth/failure", // what to do when unsuccesful login
+    })
+  );
+
+  app.get("/protected", (req, res) => {
+    res.render('index');
+  });
+
+  app.get("/auth/failure", (req, res) => {
+    res.send("You were not authenticated.. Try again next time");
+  });
+
+
+  function isLoggedIn(req, res, next) {
+    // Logic: If the req object already has user credential, then pass it onto the next point, else return a 401 status (unauthorized acccess)
+    req.user ? next() : res.sendStatus(401);
+  }
+
+  
+  app.get("/logout", (req, res) => {
+    req.logout(); // logs the user out
+    req.session.destroy(); // destroy the session created
+    res.send("You have been successfully logged out... Goodbye!");
+  });
 
 app.post("/", (req, res) => {
     var score = 0;
