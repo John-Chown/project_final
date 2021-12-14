@@ -6,7 +6,8 @@ const { setDefaultResultOrder } = require("dns");
 const { type } = require("express/lib/response");
 const session = require('express-session');
 const passport = require("passport");
-//const dbConfig = require("/db.config.js");
+
+const Connection = require("mysql/lib/Connection");
 require("./auth");
 
 
@@ -16,25 +17,20 @@ const q3sw = new Stopwatch();
 const q4sw = new Stopwatch();
 
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host: "us-cdbr-east-05.cleardb.net",
     user: "b06fb0276dd7b3",
     password: "753b2450",
     database: "heroku_c5dce109e5b80b2"
 });
 
+
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
 
-db.connect((err) => {
-    if (err) {
-        throw err;
-    } else {
-        console.log(`Successfull connection to the DB`);
-    }
-});
 
 
 
@@ -512,5 +508,5 @@ app.get("/quizFourStats", (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`server is running on ${PORT}`));

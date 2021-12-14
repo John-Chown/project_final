@@ -10,7 +10,7 @@ passport.use(
       // Connection Confguration to Google authentication
       clientID: '204539066534-o7lk163cfnndtchlul8lpf0e7df888ml.apps.googleusercontent.com',
       clientSecret: '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',
-      callbackURL: "http://localhost:3000/auth/google/callback",
+      callbackURL: "https://calm-springs-55400.herokuapp.com/auth/google/callback",
       passReqToCallback: true,
     },
     // What to do once the user is successfully authenticated
