@@ -6,6 +6,7 @@ const { setDefaultResultOrder } = require("dns");
 const { type } = require("express/lib/response");
 const session = require('express-session');
 const passport = require("passport");
+const dbConfig = require("/db.config.js");
 require("./auth");
 
 
